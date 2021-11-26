@@ -1,6 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, signOut } from "firebase/auth";
-import { collection, doc, setDoc } from "firebase/firestore";
+import { getFirestore, collection, getDocs } from "firebase/firestore/lite";
 
 const config = {
   apiKey: "AIzaSyA6b1xXO7YwWuul4z895iZ3FvGJgne7rLY",
@@ -11,15 +10,5 @@ const config = {
   appId: "1:270914762231:web:4a5aeda587aeabff1e2af2",
   measurementId: "G-DCVXGMTGYZ",
 };
-
-const app = initializeApp(config);
-
-export const auth = getAuth();
-
-const provider = new auth.GoogleAuthProvider();
-
-provider.serCustomParameters({ prompt: "select_account" });
-
-export const signInWithGooogle = () => auth.signInWithPopup(provider);
-
-export default app;
+export const app = initializeApp(config);
+export const db = getFirestore(app);
